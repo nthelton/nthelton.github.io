@@ -1,0 +1,150 @@
+{
+    "colors": [
+        1,
+        2,
+        3
+    ],
+    "legend": {
+        "captions": [
+            1,
+            2,
+            3
+        ],
+        "location": "top"
+    },
+    "data": [
+        {
+            "category": "Economics",
+            "data": [
+                {
+                    "title": "US Nominal GDP(bn)",
+                    "values": [
+                        10130,
+                        14082,
+                        15811
+                    ]
+                },
+                {
+                    "title": "US Monetary Base (bn)",
+                    "values": [
+                        586,
+                        1689,
+                        2665
+                    ]
+                },
+                {
+                    "title": "US Household Net Worth (bn)",
+                    "values": [
+                        43279,
+                        53506,
+                        64769
+                    ]
+                },
+                {
+                    "title": "US Household Debt (bn)",
+                    "values": [
+                        6963,
+                        13678,
+                        12867
+                    ]
+                },
+                {
+                    "title": "US Household Debt Service",
+                    "values": [
+                        12.5,
+                        13.5,
+                        10.6
+                    ],
+                    "format": "percent",
+                    "trail": "%"
+                },
+                {
+                    "title": "US Household Debt/Monetary Base",
+                    "values": [
+                        11.9,
+                        8.1,
+                        4.8
+                    ],
+                    "trail": "X"
+                }
+            ]
+        },
+        {
+            "category": "Stocks",
+            "data": [
+                {
+                    "title": "S&P 500 Index Level",
+                    "values": [
+                        1421,
+                        1084,
+                        1409
+                    ]
+                },
+                {
+                    "title": "S&P 500 Trailing 12-Month EPS",
+                    "values": [
+                        54.32,
+                        60.45,
+                        98.32
+                    ],
+                    "format": "currency"
+                },
+                {
+                    "title": "S&P 500 Dividend (yield)",
+                    "values": [
+                        1.2,
+                        3,
+                        2.3
+                    ],
+                    "format": "percent",
+                    "trail": "%"
+                }
+            ]
+        },
+        {
+            "category": "Bonds",
+            "data": [
+                {
+                    "title": "2-Year US Treasury (yield)",
+                    "values": [
+                        5.1,
+                        0.8,
+                        0.3
+                    ],
+                    "format": "percent",
+                    "trail": "%"
+                },
+                {
+                    "title": "10-Year US Treasury (yield)",
+                    "values": [
+                        5.1,
+                        2.3,
+                        1.8
+                    ],
+                    "format": "percent",
+                    "trail": "%"
+                },
+                {
+                    "title": "US Investment Grade (yield)",
+                    "values": [
+                        7.1,
+                        6.8,
+                        2.6
+                    ],
+                    "format": "percent",
+                    "trail": "%"
+                },
+                {
+                    "title": "US High Yield (yield)",
+                    "values": [
+                        14.5,
+                        19.4,
+                        6
+                    ],
+                    "format": "percent",
+                    "trail": "%"
+                }
+            ]
+        }
+    ]
+}
