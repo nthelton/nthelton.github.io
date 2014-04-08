@@ -3,7 +3,7 @@
 
 	function lg(t) {
 		console.log(t);
-	}		
+	}
 
 	function isObject(arg) {
 		return Object.prototype.toString.call(arg) === '[object Object]';
@@ -158,6 +158,63 @@
 			return output;
 		}
 
+
+//	date helper
+
+	var DateUtil = {
+		dateIndexes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+		monthIndexes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+		days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+		daysShort: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+		months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+		monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+		repeatFrequencyCategories: ['none', 'days', 'weeks', 'months', 'year'],
+		monthlyFrequencyCategories: ['none', '1st', '2nd', '3rd', '4th', 'last'],
+		monthlyFrequencySecondaryCategories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Day', 'Weekend', 'Weekday'],
+		geoProximityCategories: ['arriving', 'leaving', 'nearby'],
+		repeatFrequencyCategoryTree: {
+			none: null,
+			days: [{type: 'numeric', class: 'integer'}],
+			weeks: [{type: 'numeric', class: 'integer'}, {type: 'array', class: 'days'}],
+			months: [
+				{type: 'numeric', class: 'integer'},
+				{type: 'array', class: 'monthlyFrequencyCategories'},
+				{type: 'array', class: 'monthlyFrequencySecondaryCategories'}
+			],
+			years: [{type: 'numeric', class: 'integer'}]
+		},
+		isWeekend: function(d) {
+			d = d || new Date()
+			return [6, 7].indexOf(d.getDay()) !== -1
+		},
+		isWeekday: function(d) {
+			return !this.isWeekend(d)
+		},
+		getParts: function(d) {
+			var obj = {}
+			d = d || new Date()
+			obj.yr = d.getFullYear()
+			obj.mo = d.getMonth()
+			obj.dy = d.getDate()
+			obj.wdy = d.getDay()
+			obj.hr = d.getHours()
+			obj.m = d.getMinutes()
+			obj.s = d.getSeconds()
+			obj.t = d.getTime()
+			obj.dayName = DateUtil.days[obj.wdy - 1]
+			obj.dayNameShort = DateUtil.daysShort[obj.wdy - 1]
+			obj.monthName = DateUtil.months[obj.mo]
+			obj.monthNameShort = DateUtil.monthsShort[obj.mo],
+					obj.monthEndFullDate = new Date(obj.yr, obj.mo + 1, 0),
+					obj.monthBeginFullDate = new Date(obj.yr, obj.mo, 1),
+					obj.nextMonthEndFullDate = new Date(obj.yr, obj.mo + 2, 0),
+					obj.nextMonthBeginFullDate = new Date(obj.yr, obj.mo + 1, 1),
+					obj.daysToMonthEnd = obj.monthEndFullDate.getDate() - obj.dy,
+					obj.daysToNextMonthEnd = obj.nextMonthEndFullDate.getDate() + obj.daysToMonthEnd
+			return obj
+		}
+	}
+
 })(jQuery, window, document);
 ; // bootstrap init
 (function($, window, document, undefined) {
@@ -188,10 +245,10 @@
 			$('.panel.panel-collapse,.panel[data-toggle="collapse"]').each(function() {
 
 				var $this = $(this),
-					$trigger = $(this).children('.panel-heading:first'),
-					$toggle = ($trigger.attr('data-target') ? $(trigger.attr('data-target')) : $trigger.next())
+						$trigger = $(this).children('.panel-heading:first'),
+						$toggle = ($trigger.attr('data-target') ? $(trigger.attr('data-target')) : $trigger.next())
 
-				
+
 				$trigger.click(function(e) {
 					e.preventDefault()
 					$toggle.stop().slideToggle(300, 'swing')
@@ -226,6 +283,12 @@
 	};
 
 	BSU.tooltip().popover().panel().accordion();
+
+
+	// for modal overlap
+	$('body').append('<div class="nh-backdrop">')
+
+
 
 	var TAG = {
 		tag: function(tag) { // tag [,data][,options]
@@ -341,7 +404,7 @@
 		close: '<span class="close"><i class="fa fa-times"></i></span>'
 	}
 
-	$.widget('nth.listify', {
+	$.widget('nh.listify', {
 		options: {
 			select: true,
 			close: true,

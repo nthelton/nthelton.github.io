@@ -90,6 +90,8 @@ ol, ul {
     font-size: 14px;
     font-weight: bold;
     color: #444; }
+    .panel .panel-heading > .panel-title {
+      font-size: 14px; }
     .panel .panel-heading > i {
       position: absolute;
       top: 0;
@@ -165,6 +167,13 @@ ol, ul {
 /* LISTS
 /* --------------------------------------------------------------------------------
 */
+.list-group.list-group-icons .list-group-item {
+  padding-left: 30px; }
+  .list-group.list-group-icons .list-group-item > .list-icon {
+    position: absolute;
+    left: 0;
+    margin-left: 10px; }
+
 .list-group .list-group-item {
   padding: 6px 15px; }
   .list-group .list-group-item:hover {
@@ -472,6 +481,7 @@ ol, ul {
 	}
 }*/
 .alert {
+  padding: 15px;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -544,6 +554,8 @@ ol, ul {
   .alert.alert-sm {
     padding-top: 7px;
     padding-bottom: 7px; }
+  .alert.alert-dismissable {
+    padding-right: 30px; }
 
 /*
 /* BADGES
