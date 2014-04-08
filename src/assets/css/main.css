@@ -60,16 +60,16 @@ ol, ul {
   height: 30px;
   text-align: center;
   padding: 6px 0;
-  font-size: 12px;
+  font-size: 13px;
   border-radius: 50%; }
   .icon-btn.icon-btn-circle.btn-lg {
     width: 50px;
     height: 50px;
-    font-size: 18px; }
+    font-size: 19px; }
   .icon-btn.icon-btn-circle.btn-xl {
     width: 70px;
     height: 70px;
-    font-size: 24px; }
+    font-size: 25px; }
 
 /*
 /* PANELS
@@ -168,11 +168,11 @@ ol, ul {
 /* --------------------------------------------------------------------------------
 */
 .list-group.list-group-icons .list-group-item {
-  padding-left: 30px; }
+  padding-left: 35px; }
   .list-group.list-group-icons .list-group-item > .list-icon {
     position: absolute;
     left: 0;
-    margin-left: 10px; }
+    margin-left: 15px; }
 
 .list-group .list-group-item {
   padding: 6px 15px; }
@@ -198,13 +198,16 @@ ol, ul {
   margin-right: 15px; }
 .list-group.pointer > *:hover:after {
   font-family: "FontAwesome";
-  font-size: 12px;
+  font-size: 13px;
   font-weight: normal;
   display: inline-block;
   line-height: 100%;
   color: rgba(100, 100, 100, 0.8);
+  font-size: 14px;
   content: '\f054';
-  float: right; }
+  position: absolute;
+  top: 50%;
+  margin-top: -6px; }
 
 .icon-list {
   padding: 0;
@@ -213,7 +216,7 @@ ol, ul {
   .icon-list > *::before,
   .icon-list > *::after {
     font-family: "FontAwesome";
-    font-size: 12px;
+    font-size: 13px;
     font-weight: normal;
     display: inline-block;
     line-height: 100%;
@@ -234,7 +237,7 @@ ol, ul {
     float: right;
     padding-right: 0;
     padding-left: 10px;
-    margin-top: 6px; }
+    margin-top: 6.5px; }
   .icon-list > *.no-icon::before,
   .icon-list > *.no-icon::after {
     display: none !important; }
@@ -648,16 +651,16 @@ img {
   height: 30px;
   text-align: center;
   padding: 6px 0;
-  font-size: 12px;
+  font-size: 13px;
   border-radius: 50%; }
   .icon-btn.btn-circle.btn-lg {
     width: 50px;
     height: 50px;
-    font-size: 18px; }
+    font-size: 19px; }
   .icon-btn.btn-circle.btn-xl {
     width: 70px;
     height: 70px;
-    font-size: 24px; }
+    font-size: 25px; }
 
 /* LISTS & NAVS
 /* -------------------------------------------------------------------------------- */
