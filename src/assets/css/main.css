@@ -96,13 +96,13 @@ ol, ul {
       position: absolute;
       top: 0;
       left: 0;
-      width: 34;
+      width: 32;
       height: 36px;
-      line-height: 34;
-      border-loc: 1px solid #dddddd;
+      line-height: 32;
+      border-right: 1px solid #dddddd;
       text-align: center;
       box-shadow: 1px 0 0 rgba(255, 255, 255, 0.5);
-      font-size: 1.3em; }
+      font-size: 13px; }
       .panel .panel-heading > i + .panel-title {
         padding-left: 36px; }
   .panel.panel-collapse .panel-heading,
@@ -126,7 +126,7 @@ ol, ul {
     .panel-group .panel + .panel {
       box-shadow: 0 -1px 4px rgba(255, 255, 255, 0.5); }
     .panel-group .panel:last-child {
-      border-loc: 1px solid #dddddd; }
+      border-bottom: 1px solid #dddddd; }
 
 /*
 /* SLATE
@@ -575,7 +575,7 @@ ol, ul {
 .facts {
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-loc: 1px solid #eeeeee; }
+  border-bottom: 1px solid #eeeeee; }
   .facts .fact {
     font-weight: 300; }
     .facts .fact i {
@@ -889,8 +889,8 @@ img {
       background-clip: padding-box; }
   .menu li {
     /*@include list-borders-adjacted(#fff,#eee);*/
-    border-loc: 1px solid white;
-    border-loc: 1px solid #eeeeee; }
+    border-top: 1px solid white;
+    border-bottom: 1px solid #eeeeee; }
     .menu li::first-child {
       border-top: none; }
     .menu li::last-child {
