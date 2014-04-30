@@ -1,3 +1,16 @@
+/*$color-primary: rgb(49, 92, 228);
+$color-secondary: rgb(57, 224, 97);
+$color-tertiary: rgb(236, 54, 171);
+$color-dark: rgb(230,230,230);*/
+/*$gray-1: #E0E1E3;
+$gray-2: #4b4e57;
+$gray-3: #373B46;
+$gray-4: #1F222A;
+$gray-5: black;*/
+/*
+$base-border-radius: 3px;
+$base-margin-top: 30px;
+$base-push-away: 10px;*/
 /*
 /* RESET
 /* --------------------------------------------------------------------------------
@@ -30,9 +43,6 @@ ol, ul {
 .example {
   margin: 40px auto; }
 
-.centered {
-  text-align: center; }
-
 /*
 /* MENUS
 /* --------------------------------------------------------------------------------
@@ -60,16 +70,16 @@ ol, ul {
   height: 30px;
   text-align: center;
   padding: 6px 0;
-  font-size: 13px;
+  font-size: 14px;
   border-radius: 50%; }
   .icon-btn.icon-btn-circle.btn-lg {
     width: 50px;
     height: 50px;
-    font-size: 19px; }
+    font-size: 20px; }
   .icon-btn.icon-btn-circle.btn-xl {
     width: 70px;
     height: 70px;
-    font-size: 25px; }
+    font-size: 26px; }
 
 /*
 /* PANELS
@@ -89,7 +99,8 @@ ol, ul {
     padding: 8px 10px;
     font-size: 14px;
     font-weight: bold;
-    color: #444; }
+    color: #444;
+    position: relative; }
     .panel .panel-heading > .panel-title {
       font-size: 14px; }
     .panel .panel-heading > i {
@@ -198,7 +209,7 @@ ol, ul {
   margin-right: 15px; }
 .list-group.pointer > *:hover:after {
   font-family: "FontAwesome";
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   display: inline-block;
   line-height: 100%;
@@ -231,7 +242,7 @@ ol, ul {
   .icon-list > *::before,
   .icon-list > *::after {
     font-family: "FontAwesome";
-    font-size: 13px;
+    font-size: 14px;
     font-weight: normal;
     display: inline-block;
     line-height: 100%;
@@ -253,7 +264,7 @@ ol, ul {
     float: right;
     padding-right: 0;
     padding-left: 10px;
-    margin-top: 6.5px; }
+    margin-top: 7px; }
   .icon-list > *.no-icon::before,
   .icon-list > *.no-icon::after {
     display: none !important; }
@@ -463,49 +474,6 @@ ol, ul {
   -moz-box-shadow: 0 0 5px rgba(81, 167, 232, 0.3);
   box-shadow: 0 0 5px rgba(81, 167, 232, 0.3); }
 
-/*@mixin button-variant2($color, $background, $border) {
-	color: $color;
-	background-color: $background;
-	border-color: $border;
-
-	&:hover,
-		&:focus,
-		&:active,
-		&.active {
-		color: $color;
-		background-color: darken($background, 8%);
-		border-color: darken($border, 12%);
-	}
-	.open & { &.dropdown-toggle {
-				  color: $color;
-				  background-color: darken($background, 8%);
-				  border-color: darken($border, 12%);
-			  } }
-	&:active,
-		&.active {
-		background-image: none;
-	}
-	.open & { &.dropdown-toggle {
-				  background-image: none;
-			  } }
-	&.disabled,
-	&[disabled],
-	fieldset[disabled] & {
-		&,
-		&:hover,
-			&:focus,
-			&:active,
-			&.active {
-			background-color: $background;
-			border-color: $border;
-		}
-	}
-
-	.badge {
-		color: $background;
-		background-color: $color;
-	}
-}*/
 .alert {
   padding: 15px;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -588,8 +556,8 @@ ol, ul {
 /* --------------------------------------------------------------------------------
 */
 .badge {
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   background-clip: padding-box;
   display: inline-block; }
   .badge + .badge {
@@ -735,6 +703,9 @@ body.open .nh-backdrop {
 .text-center {
   text-align: center; }
 
+.centered {
+  text-align: center; }
+
 .center-block {
   display: block;
   margin-left: auto;
@@ -825,16 +796,16 @@ body.open .nh-backdrop {
   height: 30px;
   text-align: center;
   padding: 6px 0;
-  font-size: 13px;
+  font-size: 14px;
   border-radius: 50%; }
   .icon-btn.btn-circle.btn-lg {
     width: 50px;
     height: 50px;
-    font-size: 19px; }
+    font-size: 20px; }
   .icon-btn.btn-circle.btn-xl {
     width: 70px;
     height: 70px;
-    font-size: 25px; }
+    font-size: 26px; }
 
 /* LISTS & NAVS
 /* -------------------------------------------------------------------------------- */
@@ -859,7 +830,7 @@ body.open .nh-backdrop {
     padding-left: 17.5px; }
 .accordion-menu-wrapper .accordion-content {
   position: relative;
-  color: #1f222a;
+  color: #333333;
   margin-top: -2px; }
 
 /* CAROUSEL
@@ -1000,7 +971,7 @@ body.open .nh-backdrop {
       background: #fdfdfe;
       text-decoration: none; }
     .menu a .fa-icon {
-      color: black;
+      color: #222222;
       width: 16px;
       text-align: center; }
     .menu a .selected {
