@@ -473,6 +473,9 @@ ol, ul {
   -moz-box-shadow: 0 0 5px rgba(81, 167, 232, 0.3);
   box-shadow: 0 0 5px rgba(81, 167, 232, 0.3); }
 
+.btn-toolbar + .btn-toolbar {
+  margin-top: 10px; }
+
 .alert {
   padding: 15px;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -682,6 +685,43 @@ body.open .nh-backdrop {
       cursor: pointer; }
     .input-wrapper > .clear:before > input {
       padding-right: 25px; }
+
+.features {
+  margin-bottom: 15px; }
+  .features .feature {
+    position: relative; }
+    .features .feature > h3 {
+      margin: 0 0 3px 0;
+      font-size: 18px;
+      color: #17a689; }
+    .features .feature > p {
+      font-family: "Open Sans";
+      font-size: 12px;
+      margin: 0; }
+      .features .feature > p + p {
+        margin-top: 5px; }
+  .features.icon-left .feature {
+    padding-left: 60px; }
+    .features.icon-left .feature > .icon {
+      top: 0px;
+      left: 0px;
+      position: absolute;
+      font-size: 20px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      background-clip: padding-box;
+      background: #e5412d;
+      padding: 15px; }
+  .features.icon-center .feature {
+    text-align: center; }
+    .features.icon-center .feature > .icon {
+      margin-bottom: 15px;
+      font-size: 30px;
+      border: 1px solid #cccccc;
+      -webkit-border-radius: 30px;
+      border-radius: 30px;
+      background-clip: padding-box;
+      padding: 15px; }
 
 /*
 /* UTILITIES
@@ -1026,34 +1066,6 @@ body.open .nh-backdrop {
       border-top: none; }
     .menu li::last-child {
       border-bottom: none; }
-
-/* FEATURES
- -------------------------------------------------------------------------------- */
-.features {
-  margin-bottom: 15px; }
-  .features .feature {
-    position: relative;
-    padding-left: 60px; }
-    .features .feature > .icon {
-      position: absolute;
-      top: 0;
-      left: 0;
-      font-size: 20px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
-      background-clip: padding-box;
-      background: #e5412d;
-      padding: 13px; }
-    .features .feature > h3 {
-      margin: 0 0 3px 0;
-      font-size: 18px;
-      color: #17a689; }
-    .features .feature > p {
-      font-family: "Open Sans";
-      font-size: 13px;
-      margin: 0; }
-      .features .feature > p + p {
-        margin-top: 5px; }
 
 /* TAGS
  -------------------------------------------------------------------------------- */
