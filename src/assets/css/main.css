@@ -692,7 +692,7 @@ body.open .nh-backdrop {
   .features .feature {
     position: relative; }
     .features .feature > h3 {
-      margin: 0 0 3px 0;
+      margin: 0 0 10px 0;
       font-size: 18px;
       color: #17a689; }
     .features .feature > p {
@@ -728,6 +728,10 @@ body.open .nh-backdrop {
 /* UTILITIES
 /* --------------------------------------------------------------------------------
 */
+.inline {
+  list-style: none;
+  display: inline-block; }
+
 .dismiss {
   cursor: pointer; }
   .dismiss:before {
