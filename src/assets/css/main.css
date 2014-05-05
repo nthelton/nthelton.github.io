@@ -95,7 +95,7 @@ ol, ul {
       left: 0px;
       position: absolute;
       width: 32px;
-      height: 36px;
+      height: 32px;
       border-right: 1px solid #dddddd;
       -webkit-box-shadow: 1px 0 0 rgba(0, 0, 0, 0.5);
       -moz-box-shadow: 1px 0 0 rgba(0, 0, 0, 0.5);
@@ -103,7 +103,7 @@ ol, ul {
       text-align: center;
       font-size: 13px; }
       .panel .panel-heading > i + .panel-title {
-        padding-left: 36px; }
+        padding-left: 32px; }
   .panel.panel-collapse .panel-heading,
   .panel .panel-heading[data-toggle="collapse"] {
     cursor: pointer; }
@@ -182,10 +182,10 @@ ol, ul {
     font-size: 15px;
     line-height: 1.3em;
     visibility: hidden; }
-  .list-group .list-group-item.selected {
-    background: #f2f8ff; }
   .list-group .list-group-item:hover .close {
     visibility: visible; }
+  .list-group .list-group-item.selected {
+    background: #f2f8ff; }
 .list-group.editing .list-group-item {
   cursor: pointer; }
 .list-group > a.list-group-item, .list-group .list-group-item > a {
@@ -193,20 +193,22 @@ ol, ul {
 .list-group.list-group-checked .list-group-item > input[type="checkbox"] {
   float: left;
   margin-right: 15px; }
+.list-group.removeable .list-group-item {
+  padding-left: 35px; }
 .list-group.pointer > *:hover:after {
   font-family: "FontAwesome";
   font-size: 14px;
   font-weight: normal;
   display: inline-block;
   line-height: 100%;
-  color: rgba(100, 100, 100, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   top: 50%;
   position: absolute;
   font-size: 14px;
   content: '\f054';
   margin-top: -6px; }
 
-.icon-list .list-group-item {
+.icon-list2 .list-group-item {
   padding: auto; }
 
 .icon-list2 .list-group-item {
@@ -232,7 +234,7 @@ ol, ul {
     font-weight: normal;
     display: inline-block;
     line-height: 100%;
-    color: rgba(100, 100, 100, 0.8); }
+    color: rgba(0, 0, 0, 0.8); }
   .icon-list > *::before {
     padding-right: 10px; }
   .icon-list.option-list > *:before {
@@ -669,7 +671,7 @@ body.open .nh-backdrop {
     font-weight: normal;
     display: inline-block;
     line-height: 100%;
-    color: rgba(100, 100, 100, 0.8);
+    color: rgba(0, 0, 0, 0.8);
     top: 6px;
     right: 8px;
     position: absolute;
@@ -989,24 +991,6 @@ body.open .nh-backdrop {
 	@include border-radius(.2em);
 	@include float(left,.6em);
 }*/
-/* WIDGETS
--------------------------------------------------------------------------------- */
-.widget .menu, .widget .menu li {
-  padding: 0;
-  margin: 0; }
-.widget .menu li + li {
-  border-top: 1px dotted #e5e5e5;
-  padding-top: 10px;
-  margin-top: 10px; }
-.widget h5 {
-  margin: 0 0 5px; }
-.widget > h3 {
-  font-size: 16px;
-  margin-bottom: 20px; }
-
-.widget + widget {
-  margin-top: 40px; }
-
 /* GITHUB
 -------------------------------------------------------------------------------- */
 .search-menu-container {
