@@ -663,8 +663,7 @@ body.open .nh-backdrop {
 .input-wrapper {
   position: relative;
   overflow: hidden; }
-  .input-wrapper > .clear:before {
-    content: '\f057';
+  .input-wrapper > .clear {
     font-size: 17px;
     font-family: "FontAwesome";
     font-size: 14px;
@@ -680,14 +679,18 @@ body.open .nh-backdrop {
     -o-transition: all 0.1s ease-in;
     transition: all 0.1s ease-in;
     text-shadow: 0 1px 0 white;
+    cursor: pointer;
     z-index: 2;
     color: #000;
     opacity: .3; }
-    .input-wrapper > .clear:before:hover, .input-wrapper > .clear:before:focus {
-      opacity: .6;
-      cursor: pointer; }
-    .input-wrapper > .clear:before > input {
-      padding-right: 25px; }
+    .input-wrapper > .clear:before {
+      content: '\f057'; }
+    .input-wrapper > .clear:hover, .input-wrapper > .clear:focus {
+      opacity: .7; }
+  .input-wrapper > input[type=text],
+  .input-wrapper > input[type=search],
+  .input-wrapper > input[type=password] {
+    padding-right: 25px; }
 
 .features {
   margin-bottom: 15px; }
@@ -732,7 +735,9 @@ body.open .nh-backdrop {
 */
 .inline {
   list-style: none;
-  display: inline-block; }
+  margin: 0;
+  padding: 0;
+  overflow: hidden; }
 
 .dismiss {
   cursor: pointer; }
