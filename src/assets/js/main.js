@@ -17,6 +17,10 @@
 		for (var i = 0; i < array.length; i++)
 			action(array[i]);
 	}
+	function forEachInx(array, action) {
+		for (var i = 0; i < array.length; i++)
+			action(i, array[i]);
+	}
 
 	function forEachIn(object, action) {
 		for (var property in object) {
@@ -465,6 +469,86 @@
 		}
 	}
 
+
+
+
+// This product includes color specifications and designs developed by Cynthia Brewer (http://colorbrewer.org/).
+// JavaScript specs as packaged in the D3 library (d3js.org). Please see license at http://colorbrewer.org/export/LICENSE.txt
+	var colorbrewer = {
+		// YlGnBu, RdPu, YlOrRd, OrRd, Blues, RdYlBu, Spectral, RdYlGn
+
+		YlGnBu: {
+			3: ["#edf8b1", "#7fcdbb", "#2c7fb8"],
+			4: ["#ffffcc", "#a1dab4", "#41b6c4", "#225ea8"],
+			5: ["#ffffcc", "#a1dab4", "#41b6c4", "#2c7fb8", "#253494"],
+			6: ["#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4", "#2c7fb8", "#253494"],
+			7: ["#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"],
+			8: ["#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"],
+			9: ["#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"]
+		}, RdPu: {
+			3: ["#fde0dd", "#fa9fb5", "#c51b8a"],
+			4: ["#feebe2", "#fbb4b9", "#f768a1", "#ae017e"],
+			5: ["#feebe2", "#fbb4b9", "#f768a1", "#c51b8a", "#7a0177"],
+			6: ["#feebe2", "#fcc5c0", "#fa9fb5", "#f768a1", "#c51b8a", "#7a0177"],
+			7: ["#feebe2", "#fcc5c0", "#fa9fb5", "#f768a1", "#dd3497", "#ae017e", "#7a0177"],
+			8: ["#fff7f3", "#fde0dd", "#fcc5c0", "#fa9fb5", "#f768a1", "#dd3497", "#ae017e", "#7a0177"],
+			9: ["#fff7f3", "#fde0dd", "#fcc5c0", "#fa9fb5", "#f768a1", "#dd3497", "#ae017e", "#7a0177", "#49006a"]
+		}, Spectral: {
+			3: ["#fc8d59", "#ffffbf", "#99d594"],
+			4: ["#d7191c", "#fdae61", "#abdda4", "#2b83ba"],
+			5: ["#d7191c", "#fdae61", "#ffffbf", "#abdda4", "#2b83ba"],
+			6: ["#d53e4f", "#fc8d59", "#fee08b", "#e6f598", "#99d594", "#3288bd"],
+			7: ["#d53e4f", "#fc8d59", "#fee08b", "#ffffbf", "#e6f598", "#99d594", "#3288bd"],
+			8: ["#d53e4f", "#f46d43", "#fdae61", "#fee08b", "#e6f598", "#abdda4", "#66c2a5", "#3288bd"],
+			9: ["#d53e4f", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#e6f598", "#abdda4", "#66c2a5", "#3288bd"],
+			10: ["#9e0142", "#d53e4f", "#f46d43", "#fdae61", "#fee08b", "#e6f598", "#abdda4", "#66c2a5", "#3288bd", "#5e4fa2"],
+			11: ["#9e0142", "#d53e4f", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#e6f598", "#abdda4", "#66c2a5", "#3288bd", "#5e4fa2"]
+		}, OrRd: {
+			3: ["#fee8c8", "#fdbb84", "#e34a33"],
+			4: ["#fef0d9", "#fdcc8a", "#fc8d59", "#d7301f"],
+			5: ["#fef0d9", "#fdcc8a", "#fc8d59", "#e34a33", "#b30000"],
+			6: ["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"],
+			7: ["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#990000"],
+			8: ["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#990000"],
+			9: ["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"]
+		}, YlOrRd: {
+			3: ["#ffeda0", "#feb24c", "#f03b20"],
+			4: ["#ffffb2", "#fecc5c", "#fd8d3c", "#e31a1c"],
+			5: ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"],
+			6: ["#ffffb2", "#fed976", "#feb24c", "#fd8d3c", "#f03b20", "#bd0026"],
+			7: ["#ffffb2", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#b10026"],
+			8: ["#ffffcc", "#ffeda0", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#b10026"],
+			9: ["#ffffcc", "#ffeda0", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#bd0026", "#800026"]
+		}, RdYlBu: {
+			3: ["#fc8d59", "#ffffbf", "#91bfdb"],
+			4: ["#d7191c", "#fdae61", "#abd9e9", "#2c7bb6"],
+			5: ["#d7191c", "#fdae61", "#ffffbf", "#abd9e9", "#2c7bb6"],
+			6: ["#d73027", "#fc8d59", "#fee090", "#e0f3f8", "#91bfdb", "#4575b4"],
+			7: ["#d73027", "#fc8d59", "#fee090", "#ffffbf", "#e0f3f8", "#91bfdb", "#4575b4"],
+			8: ["#d73027", "#f46d43", "#fdae61", "#fee090", "#e0f3f8", "#abd9e9", "#74add1", "#4575b4"],
+			9: ["#d73027", "#f46d43", "#fdae61", "#fee090", "#ffffbf", "#e0f3f8", "#abd9e9", "#74add1", "#4575b4"],
+			10: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee090", "#e0f3f8", "#abd9e9", "#74add1", "#4575b4", "#313695"],
+			11: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee090", "#ffffbf", "#e0f3f8", "#abd9e9", "#74add1", "#4575b4", "#313695"]
+		}, Blues: {
+			3: ["#deebf7", "#9ecae1", "#3182bd"],
+			4: ["#eff3ff", "#bdd7e7", "#6baed6", "#2171b5"],
+			5: ["#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"],
+			6: ["#eff3ff", "#c6dbef", "#9ecae1", "#6baed6", "#3182bd", "#08519c"],
+			7: ["#eff3ff", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#084594"],
+			8: ["#f7fbff", "#deebf7", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#084594"],
+			9: ["#f7fbff", "#deebf7", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#08519c", "#08306b"]
+		}, RdYlGn: {
+			3: ["#fc8d59", "#ffffbf", "#91cf60"],
+			4: ["#d7191c", "#fdae61", "#a6d96a", "#1a9641"],
+			5: ["#d7191c", "#fdae61", "#ffffbf", "#a6d96a", "#1a9641"],
+			6: ["#d73027", "#fc8d59", "#fee08b", "#d9ef8b", "#91cf60", "#1a9850"],
+			7: ["#d73027", "#fc8d59", "#fee08b", "#ffffbf", "#d9ef8b", "#91cf60", "#1a9850"],
+			8: ["#d73027", "#f46d43", "#fdae61", "#fee08b", "#d9ef8b", "#a6d96a", "#66bd63", "#1a9850"],
+			9: ["#d73027", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#d9ef8b", "#a6d96a", "#66bd63", "#1a9850"],
+			10: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee08b", "#d9ef8b", "#a6d96a", "#66bd63", "#1a9850", "#006837"],
+			11: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#d9ef8b", "#a6d96a", "#66bd63", "#1a9850", "#006837"]
+		}
+	}
 
 })(jQuery, window, document);
 
