@@ -1,217 +1,5 @@
-; // helper functions
+; // bootstrap init
 (function($, window, document, undefined) {
-
-	function lg(t) {
-		console.log(t);
-	}
-
-	function isObject(arg) {
-		return Object.prototype.toString.call(arg) === '[object Object]';
-	}
-
-	function isArray(arg) {
-		return Object.prototype.toString.call(arg) === '[object Array]';
-	}
-
-	function forEach(array, action) {
-		for (var i = 0; i < array.length; i++)
-			action(array[i]);
-	}
-	function forEachInx(array, action) {
-		for (var i = 0; i < array.length; i++)
-			action(i, array[i]);
-	}
-
-	function forEachIn(object, action) {
-		for (var property in object) {
-			if (object.hasOwnProperty(property))
-				action(property, object[property]);
-		}
-	}
-
-	function reduce(func, base, array) {
-		forEach(array, function(element) {
-			base = func(base, element);
-		});
-		return base;
-	}
-
-	function map(func, array) {
-		var result = [];
-		forEach(array, function(element) {
-			result.push(func(element));
-		});
-		return result;
-	}
-
-	function extend(base) {
-		var args = Array.prototype.slice.call(arguments, 1)
-		if (base === false || base === null)
-			base = {}
-		forEach(args, function(obj) {
-			forEachIn(obj, function(name, value) {
-				base[name] = value;
-			})
-		})
-		return base;
-	}
-
-	function concatenate(delim) {
-		var arr = Array.prototype.slice.call(arguments, 1)
-		if (isArray(arr) && arr.length == 1)
-			arr = arr[0]
-		return arr.join(delim)
-	}
-
-	if (!Array.prototype.isArray) {
-		Array.isArray = function(arr) {
-			return Object.prototype.toString.call(arr) === '[object Array]';
-		}
-	}
-
-	if (!Array.prototype.indexOf) {
-		Array.prototype.indexOf = function(obj, start) {
-			for (var i = (start || 0), j = this.length; i < j; i++) {
-				if (this[i] === obj) {
-					return i;
-				}
-			}
-			return -1;
-		}
-	}
-
-	if (!Array.prototype.each) {
-		Array.prototype.each = function(func) {
-			for (var i = 0; i < this.length; i++)
-				func(this[i]);
-		}
-	}
-
-	if (!Array.prototype.has) {
-		Array.prototype.has = function(expr) {
-			for (var i = 0; i < this.length; i++) {
-				if (expr === this[i])
-					return true;
-			}
-			return false;
-		}
-	}
-
-	if (!Array.prototype.unique) {
-		Array.prototype.unique = function() {
-			var arr = [];
-			for (var i = 0; i < this.length; i++) {
-				if (arr.has(this[i]) === false)
-					arr.push(this[i]);
-			}
-			return arr;
-		}
-	}
-
-	if (!Array.prototype.reduce) {
-		Array.prototype.reduce = function(func, base) {
-			this.each(function(val) {
-				base = func(base, val)
-			})
-			return base;
-		}
-	}
-
-	if (!Array.prototype.map) {
-		Array.prototype.map = function(func) {
-			var output = [];
-			this.each(function(val) {
-				output.push(func(val));
-			})
-			return output;
-		}
-	}
-
-	if (!Array.prototype.sum) {
-		Array.prototype.sum = function() {
-			return this.reduce(function(b, v) {
-				return b += parseFloat(v)
-			}, 0)
-		}
-	}
-
-	if (!Array.prototype.extend) {
-		Array.prototype.extend = function(arr) {
-			var self = this;
-			arr.each(function(val) {
-				self.push(val);
-			})
-			return this;
-		}
-	}
-
-	if (!Array.prototype.slice)
-		Array.prototype.slice = function(start, end) {
-			if (start < 0)
-				start = this.length + start; //'this' refers to the object to which the prototype is applied
-			if (!end) {
-				end = this.length + (end < 0 ? end : 0)
-			}
-			var output = [];
-			for (var ct = 0, i = start; i < end; i++) {
-				output[ct++] = this[i];
-			}
-			return output;
-		}
-
-	var DateUtil = {
-		dateIndexes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-		monthIndexes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-		days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-		daysShort: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-		months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-		monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-		repeatFrequencyCategories: ['none', 'days', 'weeks', 'months', 'year'],
-		monthlyFrequencyCategories: ['none', '1st', '2nd', '3rd', '4th', 'last'],
-		monthlyFrequencySecondaryCategories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Day', 'Weekend', 'Weekday'],
-		geoProximityCategories: ['arriving', 'leaving', 'nearby'],
-		repeatFrequencyCategoryTree: {
-			none: null,
-			days: [{type: 'numeric', class: 'integer'}],
-			weeks: [{type: 'numeric', class: 'integer'}, {type: 'array', class: 'days'}],
-			months: [
-				{type: 'numeric', class: 'integer'},
-				{type: 'array', class: 'monthlyFrequencyCategories'},
-				{type: 'array', class: 'monthlyFrequencySecondaryCategories'}
-			],
-			years: [{type: 'numeric', class: 'integer'}]
-		},
-		isWeekend: function(d) {
-			d = d || new Date()
-			return [6, 7].indexOf(d.getDay()) !== -1
-		},
-		isWeekday: function(d) {
-			return !this.isWeekend(d)
-		},
-		getParts: function(d) {
-			var obj = {}
-			d = d || new Date()
-			obj.yr = d.getFullYear()
-			obj.mo = d.getMonth()
-			obj.dy = d.getDate()
-			obj.wdy = d.getDay()
-			obj.hr = d.getHours()
-			obj.m = d.getMinutes()
-			obj.s = d.getSeconds()
-			obj.t = d.getTime()
-			obj.dayName = DateUtil.days[obj.wdy - 1]
-			obj.dayNameShort = DateUtil.daysShort[obj.wdy - 1]
-			obj.monthName = DateUtil.months[obj.mo]
-			obj.monthNameShort = DateUtil.monthsShort[obj.mo],
-					obj.monthEndFullDate = new Date(obj.yr, obj.mo + 1, 0),
-					obj.monthBeginFullDate = new Date(obj.yr, obj.mo, 1),
-					obj.nextMonthEndFullDate = new Date(obj.yr, obj.mo + 2, 0),
-					obj.nextMonthBeginFullDate = new Date(obj.yr, obj.mo + 1, 1),
-					obj.daysToMonthEnd = obj.monthEndFullDate.getDate() - obj.dy,
-					obj.daysToNextMonthEnd = obj.nextMonthEndFullDate.getDate() + obj.daysToMonthEnd
-			return obj
-		}
-	}
 
 	// http://coveroverflow.com/a/11381730/989439
 	function mobilecheck() {
@@ -224,100 +12,138 @@
 	}
 
 
-})(jQuery, window, document);
-; // bootstrap init
-(function($, window, document, undefined) {
+//	var accordionDefaults = {
+//		parentSelector: '[rel="accordion"]',
+//		toggleSelector: '[data-toggle="collapse"]',
+//		fallback: 'children', // [children, headers, none]
+//		ns: '-collapse-',
+//	}
+//
+//	var BSU = {
+//		tooltip: function() {
+//			$('body').tooltip({
+//				selector: '[rel="tooltip"],[data-toggle="tooltip"]',
+//				container: 'body'
+//			});
+//			return this;
+//		},
+//		popover: function() {
+//			$('body').popover({
+//				selector: '[data-toggle="popover"],[rel="popover"]',
+//				container: 'body'
+//			});
+//			return this;
+//		},
+//		panel: function() {
+//			$('.panel.panel-collapse,.panel[data-toggle="collapse"]').each(function() {
+//
+//				var $this = $(this),
+//						$trigger = $(this).children('.panel-heading:first'),
+//						$toggle = ($trigger.attr('data-target') ? $(trigger.attr('data-target')) : $trigger.next())
+//
+//
+//				$trigger.click(function(e) {
+//					e.preventDefault()
+//					$toggle.stop().slideToggle(300, 'swing')
+//				})
+//			})
+//			return this
+//		},
+//		accordion: function(options) {
+//
+//			var ops = $.extend(true, {}, accordionDefaults, options);
+//
+//			$(ops.parentSelector).each(function() {
+//
+//				var $this = $(this),
+//						id = $this.attr('id'),
+//						$toggles = $this.children(ops.toggleSelector) || $this.children(':even');
+//
+//				$toggles.each(function(i) {
+//					$(this).attr({
+//						'data-toggle': 'collapse',
+//						'data-parent': '#' + id,
+//						'data-target': '#' + id + ops.ns + i
+//					})
+//							.next().attr({
+//						'class': 'collapse in',
+//						'id': id + ops.ns + i
+//					})
+//				});
+//			});
+//			return this;
+//		}
+//	};
+//
+//	BSU
+//			.tooltip()
+//			.popover()
+//			.panel()
+//			.accordion();
 
-	var accordionDefaults = {
-		parentSelector: '[rel="accordion"]',
-		toggleSelector: '[data-toggle="collapse"]',
-		fallback: 'children', // [children, headers, none]
-		ns: '-collapse-',
-	}
 
-	var BSU = {
-		tooltip: function() {
-			$('body').tooltip({
-				selector: '[rel="tooltip"],[data-toggle="tooltip"]',
+	// for modal overlay
+	$('body')
+			.tooltip({
+				selector: '[data-toggle="tooltip"],[rel="tooltip"]',
 				container: 'body'
-			});
-			return this;
-		},
-		popover: function() {
-			$('body').popover({
+			})
+			.popover({
 				selector: '[data-toggle="popover"],[rel="popover"]',
 				container: 'body'
-			});
-			return this;
-		},
-		panel: function() {
-			$('.panel.panel-collapse,.panel[data-toggle="collapse"]').each(function() {
-
-				var $this = $(this),
-						$trigger = $(this).children('.panel-heading:first'),
-						$toggle = ($trigger.attr('data-target') ? $(trigger.attr('data-target')) : $trigger.next())
-
-
-				$trigger.click(function(e) {
-					e.preventDefault()
-					$toggle.stop().slideToggle(300, 'swing')
-				})
 			})
-			return this
+			.append('<div class="nh-backdrop">')
+
+
+
+	var KEY = {
+		TAB: 9,
+		ENTER: 13,
+		ESC: 27,
+		SPACE: 32,
+		LEFT: 37,
+		UP: 38,
+		RIGHT: 39,
+		DOWN: 40,
+		SHIFT: 16,
+		CTRL: 17,
+		ALT: 18,
+		PAGE_UP: 33,
+		PAGE_DOWN: 34,
+		HOME: 36,
+		END: 35,
+		BACKSPACE: 8,
+		DELETE: 46,
+		isArrow: function(k) {
+			k = k.which ? k.which : k;
+			switch (k) {
+				case KEY.LEFT:
+				case KEY.RIGHT:
+				case KEY.UP:
+				case KEY.DOWN:
+					return true;
+			}
+			return false;
 		},
-		accordion: function(options) {
+		isControl: function(e) {
+			var k = e.which;
+			switch (k) {
+				case KEY.SHIFT:
+				case KEY.CTRL:
+				case KEY.ALT:
+					return true;
+			}
 
-			var ops = $.extend(true, {}, accordionDefaults, options);
+			if (e.metaKey)
+				return true;
 
-			$(ops.parentSelector).each(function() {
-
-				var $this = $(this),
-						id = $this.attr('id'),
-						$toggles = $this.children(ops.toggleSelector) || $this.children(':even');
-
-				$toggles.each(function(i) {
-					$(this).attr({
-						'data-toggle': 'collapse',
-						'data-parent': '#' + id,
-						'data-target': '#' + id + ops.ns + i
-					})
-							.next().attr({
-						'class': 'collapse in',
-						'id': id + ops.ns + i
-					})
-				});
-			});
-			return this;
+			return false;
+		},
+		isFunctionKey: function(k) {
+			k = k.which ? k.which : k;
+			return k >= 112 && k <= 123;
 		}
-	};
-
-	BSU
-			.tooltip()
-			.popover()
-			.panel()
-			.accordion();
-
-	// dismissing objects
-	function dismissParent(el, e) {
-		var $parent = $(el).closest('.dismissable'),
-				timer = 300
-
-		if (!$parent)
-			return
-		$parent.trigger('nh.dismissing', e).slideUp(timer)
-
-		setTimeout(function() {
-			$parent.trigger('nh.dismissed', e)
-		}, timer)
-
 	}
-
-	$('.dismiss').click(function(e) {
-		dismissParent(this, e)
-	})
-
-	// for modal overlap
-	$('body').append('<div class="nh-backdrop">')
 
 	var TAG = {
 		tag: function(tag) { // tag [,data][,options]
@@ -420,60 +246,14 @@
 		}
 	}
 
-	var KEY = {
-		TAB: 9,
-		ENTER: 13,
-		ESC: 27,
-		SPACE: 32,
-		LEFT: 37,
-		UP: 38,
-		RIGHT: 39,
-		DOWN: 40,
-		SHIFT: 16,
-		CTRL: 17,
-		ALT: 18,
-		PAGE_UP: 33,
-		PAGE_DOWN: 34,
-		HOME: 36,
-		END: 35,
-		BACKSPACE: 8,
-		DELETE: 46,
-		isArrow: function(k) {
-			k = k.which ? k.which : k;
-			switch (k) {
-				case KEY.LEFT:
-				case KEY.RIGHT:
-				case KEY.UP:
-				case KEY.DOWN:
-					return true;
-			}
-			return false;
-		},
-		isControl: function(e) {
-			var k = e.which;
-			switch (k) {
-				case KEY.SHIFT:
-				case KEY.CTRL:
-				case KEY.ALT:
-					return true;
-			}
-
-			if (e.metaKey)
-				return true;
-
-			return false;
-		},
-		isFunctionKey: function(k) {
-			k = k.which ? k.which : k;
-			return k >= 112 && k <= 123;
-		}
-	}
-
-
 
 
 // This product includes color specifications and designs developed by Cynthia Brewer (http://colorbrewer.org/).
 // JavaScript specs as packaged in the D3 library (d3js.org). Please see license at http://colorbrewer.org/export/LICENSE.txt
+
+	var miscColors = {
+		bloomberg: ['#A041CF', '#00C1C1', '#0B6DFF']
+	}
 	var colorbrewer = {
 		// YlGnBu, RdPu, YlOrRd, OrRd, Blues, RdYlBu, Spectral, RdYlGn
 
