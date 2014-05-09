@@ -73,20 +73,23 @@ ol, ul {
 /* --------------------------------------------------------------------------------
 */
 .panel {
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
   .panel .panel-heading {
-    background-color: #eaeaea;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#eaeaea));
-    background-image: -webkit-linear-gradient(top, #fafafa, #eaeaea);
-    background-image: -moz-linear-gradient(top, #fafafa, #eaeaea);
-    background-image: -o-linear-gradient(top, #fafafa, #eaeaea);
-    background-image: linear-gradient(to bottom, #fafafa, #eaeaea);
+    background-color: #f0f0f0;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#f0f0f0));
+    background-image: -webkit-linear-gradient(top, #fafafa, #f0f0f0);
+    background-image: -moz-linear-gradient(top, #fafafa, #f0f0f0);
+    background-image: -o-linear-gradient(top, #fafafa, #f0f0f0);
+    background-image: linear-gradient(to bottom, #fafafa, #f0f0f0);
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
     padding: 8px 10px;
     font-size: 14px;
-    font-weight: bold;
-    color: #444;
+    font-weight: 500;
+    color: #555555;
     position: relative; }
     .panel .panel-heading > .panel-title {
       font-size: 14px; }
@@ -96,12 +99,12 @@ ol, ul {
       position: absolute;
       width: 32px;
       height: 32px;
+      line-height: 32px;
       border-right: 1px solid #dddddd;
-      -webkit-box-shadow: 1px 0 0 rgba(0, 0, 0, 0.5);
-      -moz-box-shadow: 1px 0 0 rgba(0, 0, 0, 0.5);
-      box-shadow: 1px 0 0 rgba(0, 0, 0, 0.5);
-      text-align: center;
-      font-size: 13px; }
+      -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.5);
+      -moz-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.5);
+      box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.5);
+      text-align: center; }
       .panel .panel-heading > i + .panel-title {
         padding-left: 32px; }
   .panel.panel-collapse .panel-heading,
@@ -190,9 +193,16 @@ ol, ul {
   cursor: pointer; }
 .list-group > a.list-group-item, .list-group .list-group-item > a {
   color: #4183C4; }
-.list-group.list-group-checked .list-group-item > input[type="checkbox"] {
+.list-group.list-group-checked > .list-group-item > input[type=checkbox] {
   float: left;
-  margin-right: 15px; }
+  margin-right: 15px;
+  opacity: 0; }
+  .list-group.list-group-checked > .list-group-item > input[type=checkbox]:checked {
+    opacity: 1; }
+.list-group.list-group-checked > .list-group-item:hover > input[type=checkbox] {
+  opacity: 1; }
+.list-group.list-group-checked .list-group-checked > .list-group-item:hover > input[type=checkbox]:not(:checked) {
+  opacity: 1; }
 .list-group.removeable .list-group-item {
   padding-left: 35px; }
 .list-group.pointer > *:hover:after {
@@ -422,21 +432,21 @@ ol, ul {
     background-image: linear-gradient(to bottom, #61ba9e, #50a99a);
     border-color: #3b8d8b; }
 .btn.btn-info {
-  background-color: #5bc0de;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#6ce5ef), to(#5bc0de));
-  background-image: -webkit-linear-gradient(top, #6ce5ef, #5bc0de);
-  background-image: -moz-linear-gradient(top, #6ce5ef, #5bc0de);
-  background-image: -o-linear-gradient(top, #6ce5ef, #5bc0de);
-  background-image: linear-gradient(to bottom, #6ce5ef, #5bc0de);
-  border-color: #3e94ca; }
+  background-color: #3f9fef;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#50caff), to(#3f9fef));
+  background-image: -webkit-linear-gradient(top, #50caff, #3f9fef);
+  background-image: -moz-linear-gradient(top, #50caff, #3f9fef);
+  background-image: -o-linear-gradient(top, #50caff, #3f9fef);
+  background-image: linear-gradient(to bottom, #50caff, #3f9fef);
+  border-color: #226cda; }
   .btn.btn-info:hover, .btn.btn-info:focus, .btn.btn-info.active {
-    background-color: #4a9bcd;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#5bc0de), to(#4a9bcd));
-    background-image: -webkit-linear-gradient(top, #5bc0de, #4a9bcd);
-    background-image: -moz-linear-gradient(top, #5bc0de, #4a9bcd);
-    background-image: -o-linear-gradient(top, #5bc0de, #4a9bcd);
-    background-image: linear-gradient(to bottom, #5bc0de, #4a9bcd);
-    border-color: #356fb0; }
+    background-color: #2e74de;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#3f9fef), to(#2e74de));
+    background-image: -webkit-linear-gradient(top, #3f9fef, #2e74de);
+    background-image: -moz-linear-gradient(top, #3f9fef, #2e74de);
+    background-image: -o-linear-gradient(top, #3f9fef, #2e74de);
+    background-image: linear-gradient(to bottom, #3f9fef, #2e74de);
+    border-color: #1b44c0; }
 .btn.btn-warning {
   background-color: #f0ad4e;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#ffa65f), to(#f0ad4e));
@@ -692,6 +702,27 @@ body.open .nh-backdrop {
   .input-wrapper > input[type=password] {
     padding-right: 25px; }
 
+/*
+/* CHARTS
+/* --------------------------------------------------------------------------------
+*/
+.legend {
+  font-size: 11px;
+  color: #777;
+  float: right; }
+  .legend ul.legend-scale {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin: 0 5px; }
+    .legend ul.legend-scale li {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 1px; }
+  .legend span {
+    color: #999999; }
+
 .features {
   margin-bottom: 15px; }
   .features .feature {
@@ -736,8 +767,7 @@ body.open .nh-backdrop {
 .inline {
   list-style: none;
   margin: 0;
-  padding: 0;
-  overflow: hidden; }
+  padding: 0; }
 
 .dismiss {
   cursor: pointer; }
@@ -806,10 +836,12 @@ body.open .nh-backdrop {
   border-radius: 3px;
   background-clip: padding-box;
   display: block;
-  background: #222;
   background: rgba(0, 0, 0, 0.75);
-  font-size: 16px;
-  text-align: center; }
+  font-size: 18px;
+  text-align: center;
+  opacity: .4; }
+  #back-to-top:hover {
+    opacity: .8; }
 
 /* MAPS
 /* -------------------------------------------------------------------------------- */
