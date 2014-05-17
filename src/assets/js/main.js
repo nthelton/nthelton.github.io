@@ -343,51 +343,60 @@
 
 	$.widget('nh.listify', {
 		options: {
-			select: true,
+			selectable: true,
 			close: true,
 			restore: true,
-//            widgetEventPrefix: 'listify:'
 		},
 		_create: function() {
 
 			var prepend = (this.options.select ? LISTIFY_DEFAULTS.check : '') + (this.options.close ? LISTIFY_DEFAULTS.close : '')
 
-			this.element.addClass('list-group')
+			//this.element.addClass('list-group nh-listify')
 			this.items = this.element
-					.addClass('list-group')
+					.addClass('list-group nh-listify')
 					.children()
 					.addClass('list-group-item')
 					.prepend(prepend)
 
+			this._initEvents();
+
+		},
+		_initEvents: function() {
 			this._on(this.items, {
 				'click input': function(event) {
-					this._updateToggled()
-					$(event.target).closest('.list-group-item').toggleClass('selected')
-					event.stopPropogation()
+					if (this._isToggled()) {
+						event.preventDefault();
+					}
+					//this._updateToggled()
+					//$(event.target).closest('.list-group-item').toggleClass('selected')
+					//event.stopPropogation()
 				},
 				'click .close': function(event) {
 					event.preventDefault()
 					$target = $(event.target).closest('.list-group-item')
-					this._trigger(":removed", event, {
+					this._trigger("removed", event, {
 						text: $target.text()
 					});
 					$target.remove()
 				},
 				'click': function(event) {
-					if (this.toggled) {
-						$target = $(event.target).find('input[type="checkbox"]:first')
-						$target.prop('checked', !$target.prop('checked'))
-						$target.closest('.list-group-item').toggleClass('selected')
-
-					}
-					this._updateToggled()
+					$target = $(event.target)
+//					if (this._isToggled) {
+//						$target = $(event.target).find('input[type=checkbox]:first')
+//						$target.prop('checked', !$target.prop('checked'))
+//						$target.closest('.list-group-item').toggleClass('selected')
+//
+//					}
+//					this._updateToggled()
 				}
 			})
-
 		},
 		_updateToggled: function() {
-			this.toggled = this.items.has(':checked').length > 0
+			this.toggled = this.items.has(':checked').length
 			this.element.toggleClass('editing', this.toggled)
+		},
+		_isToggled: function() {
+			return this.element.has(':checked').length
 		},
 		_destroy: function() {
 			this.element.removeClass('list-group')
