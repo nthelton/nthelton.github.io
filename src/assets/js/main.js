@@ -333,7 +333,81 @@
 })(jQuery, window, document);
 
 
-; // listify widget
+; // accordion widget
+(function($, window, document, undefined) {
+
+	function buildAccordionPanel(options){
+		
+		var $panel = $('<div class="panel panel-default">')	
+
+		if(options.header){
+			var $header = $('<div class="panel-heading"><div class="panel-title">'+options.header+'</div></div>')
+			if(options.icon){
+				$('<i>',{'class':'icon fa fa-'+options.icon}).prependTo($header)
+			}
+			$panel.append($header)	
+		}
+		if(options.body){
+			var $body = $('<div class="panel-body">')
+			$body.html(options.body).appendTo($panel)
+		}
+		if(options.footer){
+			$('<div class="panel-footer">').html(options.footer).appendTo($panel)
+		}
+		if(options.collapse && options.id){
+			var id = options.element+'-'+options.headerClass+'-'+options.id
+			$header.attr({
+				'data-toggle': 'collapse',
+				'href': '#'+id
+			})
+			if(options.accordion){
+				$header.attr('data-parent','#'+options.element)
+			}
+			$body.attr('id',id).addClass('collapse'+(options.id === options.open ? ' in' : ''))
+		}
+
+		return $panel
+	}
+
+	$.widget('nh.accordion',{
+		
+		options: {
+			data: null,
+			headerClass: 'collapse',
+			open: 1,
+			collapse: true,
+			accordion: true
+		},
+		
+		_create: function(){
+
+			var me = this
+
+			this.element.addClass('nh-accordion')
+			this.id = this.element.attr('id')
+			
+			$.each(this.options.data,function(i,o){
+				buildAccordionPanel({
+					header: o.header,
+					body: o.body,
+					icon: o.icon,
+					id: i + 1,
+					element: me.id,
+					headerClass: me.options.headerClass,
+					accordion: me.options.accordion,
+					collapse: me.options.collapse,
+					open: me.options.open,
+				}).appendTo(me.element)
+			})
+
+		},
+
+		_destroy: function(){
+			this.element.empty().removeClass('nh-accordion')
+		},
+	})
+
+})(jQuery, window, document);; // listify widget
 (function($, window, document, undefined) {
 
 	var LISTIFY_DEFAULTS = {
