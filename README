@@ -1,1 +1,40 @@
-Hello World!
+[Welcome To nthelton](http://nthelton.github.io/)
+=====================
+
+#### Sample jQuery plugins here ####
+
+To get started, check-it out: http://nthelton.github.io/index.html
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+You can [contact me](http://nathanhelton.com/contact)
+
+
+#### Header 1 ####
+
+Add a `script` to your html:
+
+```html
+<script src="/bower_components/jquery.nthelton/dist/jquery.nthelton.js"></script>
+```
+
+Getting started
+---------------
+
+```html
+<div id="getting-started"></div>
+<script type="text/javascript">
+  $('#getting-started').nth('2015/01/01', function(event) {
+    $(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
+  });
+</script>
+```
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+ - [We care your businnes](http://nathanhelton.com)
+ - [Skilled professionals](http://nathanhelton.com)
+ - [Lorem ipsum dolor](http://nathanhelton.com)
+
+ * Fix bower tag
+ * Fix jQuery plugin tag
